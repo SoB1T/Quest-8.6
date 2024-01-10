@@ -40,7 +40,7 @@ class PostDetails(DetailView):
     context_object_name = "post"
 
 
-class PostCreate(CreateView,LoginRequiredMixin, GroupMixin):
+class PostCreate(GroupMixin, CreateView):
 
     form_class = PostForm
     model = Post
@@ -54,13 +54,13 @@ class PostCreate(CreateView,LoginRequiredMixin, GroupMixin):
         return super().form_valid(form)
 
 
-class PostUpdate(UpdateView, LoginRequiredMixin,GroupMixin):
+class PostUpdate(GroupMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
 
 
-class PostDelete(DeleteView,LoginRequiredMixin, GroupMixin):
+class PostDelete(GroupMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_list')
